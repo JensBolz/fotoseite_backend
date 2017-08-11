@@ -14,12 +14,12 @@ if(isset($_GET['login'])) {
     //Überprüfung des Passworts
     if ($user !== false && password_verify($passwort, $user['passwort'])) {
         $_SESSION['userid'] = $user['id'];
-        //die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
         echo '<meta http-equiv="refresh" content="1; URL=dashboard.html">'; 
         
     } 
     else {
-        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+        $errorMessage = "E-Mail oder Passwort war ungültig<br>";      
+        
     }
 }
 ?>
@@ -33,11 +33,7 @@ if(isset($_GET['login'])) {
 
 <body>
  
-<?php 
-if(isset($errorMessage)) {
- echo $errorMessage;
-}
-?>
+
  
 <section class="container">
       <div class="headline">
@@ -57,12 +53,21 @@ if(isset($errorMessage)) {
           </label>
         </p>
         <p class="submit"><input type="submit" name="commit" value="Login"></p>
+        <div class="errormessage">
+            <?php 
+                if(isset($errorMessage)) {
+                    echo $errorMessage;                    
+                }
+                ?>
+        </div>
+        
       </form>
     </div>
 
     <div class="login-help">
       <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
     </div>
+    
   </section>
 </body>
 </html>
